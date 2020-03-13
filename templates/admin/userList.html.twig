@@ -1,0 +1,25 @@
+{% block body %}
+    {% embed 'embed/_table.html.twig' %}
+        {% block head %}
+            <th>Id</th>
+            <th>Pseudo</th>
+            <th>Mail</th>
+            <th>Date création</th>
+            <th>actions</th>
+        {% endblock %}
+        {% block body %}
+                {% for user in users %}
+                        <tr class="table-candidate-content">
+                            <td>{{ user.id }}</td>
+                            <td>{{ user.nickname|capitalize }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.createdAt ? user.createdAt|date('Y-m-d') : '' }}</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="5">no records found</td>
+                        </tr>
+                    {% endfor %}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
